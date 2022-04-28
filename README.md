@@ -9,5 +9,5 @@
   <p align="center" width="100%">Movie Finder, type in the name of the movie you're looking for.
   </p>
   <p>Sometimes case sensitive, sometimes buggy <small>-I mean, sometimes comes with unexpected features-</small>, and not nearly as good as <a href="http://pimpmymovie.herokuapp.com/">PimpMyMovie</a> !</p>
-  <p>You won't be able to test it unless you create a local `key.js` file and fill it with your own omdb key, filled with `const omdbKey = "your_key"`</p>
+  <p>You won't be able to test it unless you create a local ```key.js``` file and fill it with your own omdb key, filled with ```const omdbKey = "your_key"```</p>
 </div>
