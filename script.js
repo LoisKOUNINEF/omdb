@@ -12,7 +12,7 @@ let target = document.getElementById("end");
 let searchBar = document.getElementById('search-bar');
 let submitButton = document.getElementById('submit-btn');
 let searchCounter = 1;
-let dataToDisplay = [];
+let dataFetched = [];
 let displayError = document.getElementById("errorfield");
 
 // condition to prevent bugs in search loop
@@ -26,11 +26,13 @@ submitButton.addEventListener('click', e => {
 
 const getData = async (userSearch) => {
   displayError.textContent = "";
+  let dataToDisplay = [];
   try {
     const response = await fetch(`http://www.omdbapi.com/?apikey=${omdbKey}&s=${userSearch}&page=${searchCounter}`);
     const matchingData = await response.json();
     matchingData.Search.forEach(movie => {
       dataToDisplay.push({ 'name': movie.Title, 'date': movie.Year, 'poster': movie.Poster, id: movie.imdbID });
+      dataFetched.push({ 'name': movie.Title, 'date': movie.Year, 'poster': movie.Poster, id: movie.imdbID})
     });
     displayData(dataToDisplay);
   }
@@ -43,9 +45,9 @@ const getData = async (userSearch) => {
 const displayData = (input) => {
   input.forEach(e => {
     target.insertAdjacentHTML("beforeend", `
-      <div class="movie intObs">
+      <div class="movie observer">
       <div class=movie-left>
-      <img class='icon' src="${e.poster}" onerror="this.src='https://images.unsplash.com/photo-1560109947-543149eceb16?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNpbmVtYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'" alt="movie icon" />
+      <img class='icon' src="${e.poster}" onerror="this.src='https://images.unsplash.com/photo-1560109947-543149eceb16?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNpbmVtYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'" alt="movie poster" />
       </div>
       <div class="movie-right">
       <div class="right-up">
@@ -70,7 +72,7 @@ const displayData = (input) => {
     threshold: [0.35]
   });
 
-  elementsToObserve = document.querySelectorAll(".intObs");
+  elementsToObserve = document.querySelectorAll(".observer");
   elementsToObserve.forEach( function (e) {
     e.classList.add('hidden');
     observer.observe(e);
@@ -80,7 +82,7 @@ const displayData = (input) => {
   readMoreBtn.forEach(button => {
     button.addEventListener('click', e => {
       let btnIndex = Array.from(readMoreBtn).indexOf(e.target);
-      getDescription(dataToDisplay[btnIndex].id);
+      getDescription(dataFetched[btnIndex].id);
       modalBg.classList.add("visible");
       body.classList.add("modal-activated");
 
@@ -109,7 +111,7 @@ const getDescription = async (movieId) => {
     modalDirector.innerHTML = `Director: ${moreDescription.Director}`;
     modalGenre.innerHTML = `Genre: ${moreDescription.Genre}`;
     modalPlot.innerHTML = `Synopsis: ${moreDescription.Plot}`;
-    modalPartLeft.innerHTML = `<img class="poster" src="${moreDescription.Poster}" alt="movie poster" />`;
+    modalPartLeft.innerHTML = `<img class="poster" src="${moreDescription.Poster}" onerror="this.src='https://images.unsplash.com/photo-1560109947-543149eceb16?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNpbmVtYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'" alt="movie poster" />`;
   }
   catch (error) {
     console.error('Response error:', error.message);
