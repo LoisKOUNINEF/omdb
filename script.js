@@ -45,7 +45,7 @@ const displayData = (input) => {
     target.insertAdjacentHTML("beforeend", `
       <div class="movie intObs">
       <div class=movie-left>
-      <img class='icon' src="${e.poster}" alt="movie icon" />
+      <img class='icon' src="${e.poster}" onerror="this.src='https://images.unsplash.com/photo-1560109947-543149eceb16?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNpbmVtYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'" alt="movie icon" />
       </div>
       <div class="movie-right">
       <div class="right-up">
@@ -102,14 +102,14 @@ const displayData = (input) => {
 const getDescription = async (movieId) => {
   try {
     const description = await fetch(`http://www.omdbapi.com/?apikey=${omdbKey}&i=${movieId}&plot=full`);
-    const curatedDescription = await description.json();
-    modalTitle.innerHTML = `<strong>${curatedDescription.Title}</strong> (${curatedDescription.Year})`;
-    modalRated.innerHTML = `Rated: ${curatedDescription.Rated}`;
-    modalRuntime.innerHTML = `Runtime: ${curatedDescription.Runtime}`;
-    modalDirector.innerHTML = `Director: ${curatedDescription.Director}`;
-    modalGenre.innerHTML = `Genre: ${curatedDescription.Genre}`;
-    modalPlot.innerHTML = `Synopsis: ${curatedDescription.Plot}`;
-    modalPartLeft.innerHTML = `<img class="poster" src="${curatedDescription.Poster}" alt="movie poster" />`;
+    const moreDescription = await description.json();
+    modalTitle.innerHTML = `<strong>${moreDescription.Title}</strong> (${moreDescription.Year})`;
+    modalRated.innerHTML = `Rated: ${moreDescription.Rated}`;
+    modalRuntime.innerHTML = `Runtime: ${moreDescription.Runtime}`;
+    modalDirector.innerHTML = `Director: ${moreDescription.Director}`;
+    modalGenre.innerHTML = `Genre: ${moreDescription.Genre}`;
+    modalPlot.innerHTML = `Synopsis: ${moreDescription.Plot}`;
+    modalPartLeft.innerHTML = `<img class="poster" src="${moreDescription.Poster}" alt="movie poster" />`;
   }
   catch (error) {
     console.error('Response error:', error.message);
