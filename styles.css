@@ -1,3 +1,7 @@
+body {
+  background-color: #ccc;
+}
+
 h1 {
   text-align: center;
 }
@@ -11,5 +15,68 @@ h1 {
 .searchbar {
   width: 20vw;
   font-family: Oswald;
-  font-size: 3vh;
+  font-size: 1.2em;
 }
+
+.icon {
+  height: 250px;
+  width: 150px;
+  object-fit: cover;
+}
+
+.movie {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid #black;
+  display: flex;
+  width: 50%;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transition: transform 1s, opacity 1s;
+  -webkit-transition: transform 1s, opacity 1s;
+  -moz-transition: transform 1s, opacity 1s;
+  -ms-transition: transform 1s, opacity 1s;
+  -o-transition: transform 1s, opacity 1s;
+  z-index: 1;
+}
+
+.movie.hidden {
+  transform: translateX(75px);
+  -webkit-transform: translateX(75px);
+  -moz-transform: translateX(75px);
+  -ms-transform: translateX(75px);
+  -o-transform: translateX(75px);
+  opacity: 0;
+}
+
+.movie-left {
+  margin-left: 20px;
+}
+
+.movie-right {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 30vw;
+}
+
+.listEl {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.read-more-btn {
+  margin-top: 5px;
+  width: 100px;
+  justify-self: flex-end;
+}
+
