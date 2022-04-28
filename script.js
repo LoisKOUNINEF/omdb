@@ -49,8 +49,8 @@ const displayData = (input) => {
       </div>
       <div class="movie-right">
       <div class="right-up">
-      <div class="listEl"><strong>${e.name}</strong></div>
-      <div class="listEl">${e.date}</div>
+      <div class="movie-el"><strong>${e.name}</strong></div>
+      <div class="movie-el">${e.date}</div>
       </div>
       <button type=button class="read-more-btn" >Read more</button>
       </div>
