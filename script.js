@@ -19,9 +19,19 @@ let displayError = document.getElementById("errorfield");
 let a = 0;
 
 submitButton.addEventListener('click', e => {
+  searchCounter = 1;
   target.innerHTML = '';
   let userSearch = searchBar.value;
   getData(userSearch);
+});
+
+window.addEventListener('keyup', e => {
+  if (e.code === 'Enter') {
+    searchCounter = 1;
+    target.innerHTML = '';
+    let userSearch = searchBar.value;
+    getData(userSearch);
+  }
 });
 
 const getData = async (userSearch) => {
@@ -46,7 +56,7 @@ const displayData = (input) => {
   input.forEach(e => {
     target.insertAdjacentHTML("beforeend", `
       <div class="movie observer">
-      <div class=movie-left>
+      <div class="movie-left">
       <img class='icon' src="${e.poster}" onerror="this.src='https://images.unsplash.com/photo-1560109947-543149eceb16?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNpbmVtYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'" alt="movie poster" />
       </div>
       <div class="movie-right">
@@ -54,7 +64,8 @@ const displayData = (input) => {
       <div class="movie-el"><strong>${e.name}</strong></div>
       <div class="movie-el">${e.date}</div>
       </div>
-      <button type=button class="read-more-btn" >Read more</button>
+      <br><br><br><br><br><br><br><br><br>
+      <button type=button class="read-more-btn">Read more</button>
       </div>
       </div>
       `)
@@ -99,6 +110,29 @@ const displayData = (input) => {
       });
     })
   });
+
+  let readMoreImg = document.querySelectorAll(".icon");
+  readMoreImg.forEach(button => {
+    button.addEventListener('click', e => {
+      let imgIndex = Array.from(readMoreImg).indexOf(e.target);
+      getDescription(dataFetched[imgIndex].id);
+      modalBg.classList.add("visible");
+      body.classList.add("modal-activated");
+
+      modalBg.addEventListener('click', () => {
+        modalBg.classList.remove("visible");
+        body.classList.remove("modal-activated");
+        modalTitle.innerHTML = '';
+        modalRated.innerHTML = '';
+        modalRuntime.innerHTML = '';
+        modalDirector.innerHTML = '';
+        modalGenre.innerHTML = '';
+        modalPlot.innerHTML = '';
+        modalPartLeft.innerHTML = '';
+      });
+    })
+  });
+
 }
 
 const getDescription = async (movieId) => {
