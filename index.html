@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="key.js"></script>
+
+  <title>Find moviezzz</title>
+</head>
+<body>
+  <h1>Find-A-Movie</h1>
+  <div id="searchbar-container">
+    <input type="search" id="search-bar" placeholder="Enter your query" class="searchbar"></input>
+    <button id="submit-btn" type="button">Search</button>
+    <p><span id="errorfield"></span></p>
+  </div>
+
+  <div class="modal-bg">
+    <div class="modal">
+      <div class="modal-part-left">
+      </div>
+      <div class="modal-part-right">
+        <div class="modal-el title-year"></div>
+        <div class="modal-el rated"></div>
+        <div class="modal-el runtime"></div>
+        <div class="modal-el director"></div>
+        <div class="modal-el genre"></div>
+        <div class="modal-el plot"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="last-el"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
