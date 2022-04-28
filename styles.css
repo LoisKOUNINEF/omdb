@@ -1,0 +1,15 @@
+h1 {
+  text-align: center;
+}
+
+#searchbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.searchbar {
+  width: 20vw;
+  font-family: Oswald;
+  font-size: 3vh;
+}
