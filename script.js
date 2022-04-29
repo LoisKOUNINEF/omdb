@@ -14,7 +14,6 @@ let submitButton = document.getElementById('submit-btn');
 let searchCounter = 1;
 let dataFetched = [];
 let displayError = document.getElementById("errorfield");
-
 // condition to prevent bugs in search loop
 let a = 0;
 
@@ -90,9 +89,10 @@ const displayData = (input) => {
   });
 
   let readMoreBtn = document.querySelectorAll(".read-more-btn");
+  btnArray = Array.from(readMoreBtn);
   readMoreBtn.forEach(button => {
     button.addEventListener('click', e => {
-      let btnIndex = Array.from(readMoreBtn).indexOf(e.target);
+      let btnIndex = btnArray.indexOf(e.target);
       getDescription(dataFetched[btnIndex].id);
       modalBg.classList.add("visible");
       body.classList.add("modal-activated");
@@ -112,9 +112,10 @@ const displayData = (input) => {
   });
 
   let readMoreImg = document.querySelectorAll(".icon");
+  imgArray = Array.from(readMoreBtn);
   readMoreImg.forEach(button => {
     button.addEventListener('click', e => {
-      let imgIndex = Array.from(readMoreImg).indexOf(e.target);
+      let imgIndex = imgArray.indexOf(e.target);
       getDescription(dataFetched[imgIndex].id);
       modalBg.classList.add("visible");
       body.classList.add("modal-activated");
@@ -132,7 +133,6 @@ const displayData = (input) => {
       });
     })
   });
-
 }
 
 const getDescription = async (movieId) => {
